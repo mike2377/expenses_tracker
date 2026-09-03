@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Suivi de Dépenses</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>💰 My Expense Tracker</h1>
+
+      <!-- Summary (Balance, Income, Expenses) -->
+      <div class="summary">
+        <div class="card balance">
+          <h3>Total Balance</h3>
+          <p id="balance">0.00 FCFA</p>
+        </div>
+        <div class="card income">
+          <h3>Income</h3>
+          <p id="income">0.00 FCFA</p>
+        </div>
+        <div class="card expense">
+          <h3>Expense</h3>
+          <p id="expense">0.00 FCFA</p>
+        </div>
+      </div>
+
+      <!-- Add form -->
+      <form id="transaction-form" class="form-container">
+        <input
+          type="text"
+          id="description"
+          placeholder="Description (e.g., Salary, Rent)"
+          required
+        />
+        <!-- Enter a positive amount for income, and a negative amount for an expense. -->
+        <input
+          type="number"
+          id="amount"
+          placeholder="Amount (+ or -)"
+          step="0.01"
+          required
+        />
+        <button type="submit">Add</button>
+      </form>
+
+      <!-- Filters -->
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="income">Income</button>
+        <button class="filter-btn" data-filter="expense">Expenses</button>
+      </div>
+
+      <!-- List and Chart -->
+      <div class="main-content">
+        <div class="list-container">
+          <h2>Expense history</h2>
+          <ul id="transaction-list"></ul>
+        </div>
+        <div class="chart-container">
+          <h2>Overview</h2>
+          <canvas id="myChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
