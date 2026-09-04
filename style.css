@@ -1,8 +1,8 @@
 /* Color variables */
 :root {
   --bg-color: #f4f7f6;
-  --card-bg: #ffffff;
-  --text-color: #333333;
+  --card-bg: #fff;
+  --text-color: #333;
   --income-color: #28c76a;
   --expense-color: #e74c3c;
   --primary-color: #3498db;
@@ -30,6 +30,7 @@ h1 {
   text-align: center;
   margin-bottom: 20px;
 }
+
 h2 {
   margin-bottom: 15px;
   font-size: 1.2rem;
@@ -56,6 +57,7 @@ h2 {
   color: #666;
   margin-bottom: 5px;
 }
+
 .card p {
   font-size: 1.5rem;
   font-weight: bold;
@@ -65,9 +67,11 @@ h2 {
 .card.balance p {
   color: var(--primary-color);
 }
+
 .card.income p {
   color: var(--income-color);
 }
+
 .card.expense p {
   color: var(--expense-color);
 }
@@ -150,9 +154,11 @@ h2 {
   .summary {
     flex-direction: column;
   }
+
   .form-container {
     flex-direction: column;
   }
+  
   .main-content {
     flex-direction: column;
   }
