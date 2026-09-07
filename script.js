@@ -49,7 +49,7 @@ function addTransaction () {
   const amount = parseFloat(amountInput.value)
   const description = descInput.value.trim()
 
-  //validation
+  // validation
   if (!description) {
     alert('Please enter a description')
     return
