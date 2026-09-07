@@ -3,6 +3,7 @@
 let transactions = loadTransactions()
 let currentFilter = 'all'
 let myChart
+const CURRENCY = 'FCFA'
 
 // Selecting HTML elements
 const form = document.getElementById('transaction-form')
@@ -46,10 +47,22 @@ filterBtns.forEach((btn) => {
 // Add transaction
 function addTransaction () {
   const amount = parseFloat(amountInput.value)
+  const description = descInput.value.trim()
+
+  //validation
+  if (!description) {
+    alert('Please enter a description')
+    return
+  }
+
+  if (Number.isNaN(amount) || amount === 0) {
+    alert('please enter a valid amount different from 0')
+    return
+  }
 
   // create transaction object
   const transaction = {
-    id: Date.now(),
+    id: crypto.randomUUID(),
     description: descInput.value,
     amount: Math.abs(amount),
     // if amount is positive -> income, negative -> expense
@@ -92,9 +105,9 @@ function renderSummary () {
   const balance = income - expense
 
   // display in HTML
-  balanceEl.textContent = `${balance.toFixed(2)} FCFA`
-  incomeEl.textContent = `+${income.toFixed(2)} FCFA`
-  expenseEl.textContent = `-${expense.toFixed(2)} FCFA`
+  balanceEl.textContent = `${balance.toFixed(2)} ${CURRENCY}`
+  incomeEl.textContent = `+${income.toFixed(2)} ${CURRENCY}`
+  expenseEl.textContent = `-${expense.toFixed(2)} ${CURRENCY}`
 }
 
 function renderList () {
@@ -116,14 +129,15 @@ function renderList () {
 
     li.innerHTML = `
             <div class="info">
-                <span class="desc">${t.description}</span>
+                <span class="desc"></span>
                 <span class="date">${t.date}</span>
             </div>
             <div class="actions">
-                <span class="amount">${sign}${t.amount.toFixed(2)} FCFA</span>
+                <span class="amount">${sign}${t.amount.toFixed(2)} ${CURRENCY}</span>
                 <button class="delete-btn">✕</button>
             </div>
         `
+    li.querySelector('.desc').textContent = t.description
 
     // Add delete event on the button
     const deleteBtn = li.querySelector('.delete-btn')
